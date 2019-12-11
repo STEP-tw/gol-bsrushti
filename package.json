@@ -1,0 +1,12 @@
+{
+  "name": "gol-bsrushti",
+  "version": "1.0.0",
+  "description": "Cli Game of Life",
+  "main": "main.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha --recursive test/*"
+  }
+}
