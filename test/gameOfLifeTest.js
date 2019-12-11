@@ -3,7 +3,7 @@ const {nextGeneration} = require('../src/gameOfLife.js');
 
 const contains = (list,element) => list.some(e=>e[0]===element[0] && e[1]===element[1]);
 const isSame = (actualList,expectedList) => actualList.every(contains.bind(null,expectedList));
-const isSameArity = (actualList,expectedList) => actualList.length == expectedList.length;
+const isSameArity = (actualList,expectedList) => actualList.length === expectedList.length;
 
 describe('nextGeneration',() => {
   it('should generate an empty generation for a current generation that contains only one live cell',() => {

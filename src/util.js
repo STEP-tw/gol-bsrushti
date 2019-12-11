@@ -13,7 +13,7 @@ const isCoordinatesGreaterThanBoard = function(boardSize, cell) {
 const generateWorld  = function(grid,aliveCells) {
   for(let aliveCell of aliveCells) {
     grid[aliveCell[0]][aliveCell[1]] = "*";
-  };
+  }
   return grid;
 };
 
@@ -30,8 +30,8 @@ const cartesian = function(set1,set2) {
   for(let rowIndex = 0; rowIndex < set1.length; rowIndex++) {
     for(let columnIndex = 0; columnIndex < set2.length; columnIndex++) {
       resultSet.push([set1[rowIndex],set2[columnIndex]]);
-    };
-  };
+    }
+  }
   return resultSet;
 };
 
@@ -74,33 +74,33 @@ const generateNextWorld  = function(initialWorld) {
       let noOfAliveNeighbours = totalAliveNeighbors([index,i],initialWorld);
       let nextState = checkForNextGenration(initialWorld[index][i],noOfAliveNeighbours);
       nextWorld[index][i] = nextState;
-    };
-  };
+    }
+  }
   return nextWorld;
-}
+};
 
-const getAliveCellsOfNextGeneration = function(nextWorld,width,height) { 
+const getAliveCellsOfNextGeneration = function(nextWorld,width,height) {
   let result = [];
   for(let rowIndex = 0; rowIndex < width; rowIndex++) {
     for(let colomnIndex = 0; colomnIndex < height; colomnIndex++) {
       if(nextWorld[rowIndex][colomnIndex] == "*") {
         result.push([rowIndex,colomnIndex]);
-      };
-    };
-  };
+      }
+    }
+  }
   return result;
 };
 
-const getCoordinates = function(length, initial) { 
+const getCoordinates = function(length, initial) {
   let result = [];
-  for(let index = 0; index < length; index++ ) { 
+  for(let index = 0; index < length; index++ ) {
     result.push(initial);
     initial += 1;
-  };
+  }
   return result;
 };
 
-const filterInputs = function(array,list) { 
+const filterInputs = function(array,list) {
   return list.some((element) => {
     let result1 = element.every(x=> array.includes(x));
     let result2 = array.every(x=> element.includes(x));
@@ -116,7 +116,7 @@ const cellCoordinates = function(bounds){
   return result;
 };
 
-const getDimension = function(bounds) { 
+const getDimension = function(bounds) {
   return {
     height : bounds.bottomRight[0]-bounds.topLeft[0]+1,
     width : bounds.bottomRight[1]-bounds.topLeft[1]+1
@@ -126,22 +126,14 @@ const getDimension = function(bounds) {
 const printBoard = function(array){
   let board = [];
   let length = array[0].length;
-  if(array[0].length == 0){
+  if(!array[0]){
     return [""];
   }
   board = board.concat(dashline(length));
   for(let row = 0; row < array.length; row++){
     board = board.concat(createRow(array[row], row));
-  };
-  return board.concat(dashline(length));
-};
-
-const fillConsecutiveNumbersArray = function(limit){
-  let array = [];
-  for(let index = 0; index < limit ; index++){
-    array.push(index);
   }
-  return array;
+  return board.concat(dashline(length));
 };
 
 const fillArray = function(filler){
@@ -150,32 +142,25 @@ const fillArray = function(filler){
   }
 };
 
-const xAxis = function(length) { 
-  let axis = fillConsecutiveNumbersArray(length).map(addSpaces).join(verticalCharacter);
-  axis = [verticalCharacter + axis + verticalCharacter]; 
-  axis =  axis.concat(dashline(length));
-  return axis;
-};
-
-const createRow = function(array, currRow){
+const createRow = function(array){
   let row = [];
   let column = array.map(addSpaces).join(verticalCharacter);
   let cell = verticalCharacter+ column +verticalCharacter;
   row.push(cell);
   return row;
-}
+};
 
 const dashline = function(length){
   if(length==0){
     return "";
-  };
+  }
   return fillArray(horizontalCharacter)(length*4+1).join("");
 };
 
 const addSpaces = function(text){
   if(text != undefined){
     return " "+text+" ";
-  };
+  }
   return "";
 };
 
